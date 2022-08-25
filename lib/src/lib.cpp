@@ -1,0 +1,1 @@
+// This file here because CMake will not generate library if there is no source file.

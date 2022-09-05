@@ -113,11 +113,11 @@ public:
 	 * 
 	 * @param key 
 	 * @return value of given key
-	 * @exception std::runtime_error key not found in the hashmap
+	 * @exception std::range_error key not found in the hashmap
 	 */
 	val_T get_value(key_T const& key) {
 		auto iter = find(key);
-		[[unlikely]] if (iter == data.end()) throw(std::runtime_error(except_msg));
+		[[unlikely]] if (iter == data.end()) throw(std::range_error(except_msg));
 		return iter->second;
 	}
 
@@ -126,7 +126,7 @@ public:
 	 * 
 	 * @param key 
 	 * @return value of given key
-	 * @exception std::runtime_error key not found in the hashmap
+	 * @exception std::range_error key not found in the hashmap
 	 */
 	val_T operator[](key_T const& key) {
 		return get_value(key);

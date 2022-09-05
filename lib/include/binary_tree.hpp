@@ -35,6 +35,19 @@ private:
         else append(node->left, val);
     }
 
+    node_ptr& find(node_ptr& node, T const& val) {
+        if(!node) {
+            // not found
+            // TODO: Handle this situation.
+            return node; // temp;
+        }
+        else if(val == node->value) {
+            return node;
+        }
+        else if(val > node->value) find(node->right, val);
+        else find(node->left, val);
+    }
+
     void print(node_ptr& node) { // temp
         if(node->left) print(node->left);
         
@@ -51,10 +64,6 @@ public:
         root->value = root_val;
     }
 
-    void print() { // temp
-        print(root);
-    } // temp
-
     void append(T const& val) {
         if(!root) {
             root = std::make_unique<Node>();
@@ -63,4 +72,12 @@ public:
         else if(val >= root->value) append(root->right, val);
         else append(root->left, val);
     }
+
+    node_ptr& find(T const& val) {
+        return find(root, val);
+    }
+
+    void print() { // temp
+        print(root);
+    } // temp
 };
